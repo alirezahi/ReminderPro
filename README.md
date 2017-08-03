@@ -1,1 +1,1 @@
-![Caption for the picture.](/image.png =100x)
+<img src="image.png" width="100">
