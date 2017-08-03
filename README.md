@@ -1,1 +1,1 @@
-![Caption for the picture.](/image.png)
+![Caption for the picture.](/image.png =100x)
