@@ -19,7 +19,14 @@
 }
 
 .x-sign{
-    float:right;
     background: none;
     border:none;
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+.each-reminder{
+    overflow: hidden;
+    position:relative;
 }
