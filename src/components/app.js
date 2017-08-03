@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addReminder } from '../actions';
+import { addReminder, delReminder } from '../actions';
 
 
 class App extends Component {
   constructor(props){
     super(props);
-      text: ''
+      this.state = {
+        text: '',
+        duetime: ''
+      }
   }
 
   addReminder(){
     this.props.addReminder(this.state.text);
+  }
+
+  delReminder(id){
+    this.props.delReminder(id);
   }
 
   renderReminders(){
@@ -18,12 +25,16 @@ class App extends Component {
     return (
       <ul className="list-group col-sm-4">
           {
-            reminders.map((reminder) => {
+            reminders.map(reminder => {
                 return (
-                  <li className="list-group-item">
-                    <div>
+                  <li key={reminder.id} className="list-group-item">
+                    <div className="reminder-element"> 
                       {reminder.text}
                     </div>
+                    <button className="reminder-element x-sign"
+                    onClick={() => this.delReminder(reminder.id)}
+                    >
+                    &#x2715;</button>
                   </li>
                 )
               }
@@ -40,7 +51,11 @@ class App extends Component {
         <div className="main-div">
           <label htmlFor="reminder-request">Type your Reminder</label>
           <input className="form-control reminder-main-input" type="text" name="reminder-request" 
-          onChange={event => this.setState({text:event.target.value})}/>
+          onChange={event => this.setState({text:event.target.value})}
+          placeholder="I have to ..."/>
+          <input className="form-control reminder-main-input" type="datetime-local" name="reminder-time" 
+          onChange={event => this.setState({duetime:event.target.value})}
+          placeholder="Due Time"/>
         </div>
         <button className="btn btn-success add-reminder-btn"
         onClick={() => this.addReminder()}>
@@ -57,4 +72,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { addReminder })(App);
+export default connect(mapStateToProps, { addReminder, delReminder })(App);

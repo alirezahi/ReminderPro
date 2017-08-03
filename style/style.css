@@ -13,3 +13,13 @@
 .add-reminder-btn{
     margin:10px;
 }
+
+.reminder-element{
+    display: inline;
+}
+
+.x-sign{
+    float:right;
+    background: none;
+    border:none;
+}
